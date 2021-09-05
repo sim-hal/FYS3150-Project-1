@@ -50,6 +50,7 @@
 \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
 
 \usepackage{amsmath}
+%\usepackage{mathcal}
 
 %%% END Article customizations
 
@@ -84,4 +85,30 @@ And since the derivative of a constant is 0, we get that:
 It immediately follows that
 \[ - \dfrac{d^2u}{dx^2} = 100e^{-10x}\]
 This shows that (2) is a solution to equation (1).
+
+\section*{Exercise 2}
+
+To be added
+
+\section*{Exercise 3}
+
+I will derive a discretized version of equation (1) by finding a discretized approximation of \(\dfrac{d^2u}{dx^2}=u''(x)\).  
+Let \(h\) be a step size, and let \(a\) be a point such that \(a \in [h, 1-h]\). Firstly, evaluate the 3rd degree Taylor expansion of u(x) about the point \(a\) in the points \(a+h\) and \(a-h\).
+\[u(a+h) =u(a) + u'(a)\cdot h + \dfrac{1}{2}u''(a) \cdot h^2 + \dfrac{1}{6}u'''(a) \cdot h^3 + \mathcal{O}(h^4) \]
+\[u(a-h) =u(a) + u'(a)\cdot (-h) + \dfrac{1}{2}u''(a) \cdot h^2 + \dfrac{1}{6}u'''(a) \cdot (-h)^3 + \mathcal{O}(h^4) \]
+Next, add the two equations, giving the following equality.
+\[ u(a+h) + u(a-h) = 2u(a) + u''(a)\cdot h^2 + \mathcal{O}(h^4) \]
+The equation can be solved for \(u''(a)\)
+\[u''(a) = \dfrac{u(a+h) - 2u(a) +u(a-h)}{h^2} + \mathcal{O}(h^2) \]
+Assuming a sufficiently small value for h, we can approximate and discretize with \(u(ih) \approx v_i\). Here, \(i \in \{0, 1, .., n\}\) (meaning \(n=\dfrac{1}{h}\)), and:
+\[u''(ih) = \dfrac{v_{i+1} - 2v_i +v_{i-1}}{h^2} \]
+Using equation (1), we can rewrite:
+\begin{equation}h^2 \cdot f(ih) = -v_{i+1} + 2v_i - v_{i-1}\end{equation}
+Which is a discretized version of equation (1) with the following conditions:
+\begin{itemize}
+	\item \(v_0=u(0)=0\) 
+	\item \(v_{n}=u(1)=0\).
+\end{itemize}
+
+
 \end{document}
