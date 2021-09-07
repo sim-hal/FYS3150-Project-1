@@ -50,14 +50,19 @@
 \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
 
 \usepackage{amsmath}
+\usepackage{amsfonts}
 %\usepackage{mathcal}
+
+% Pseudocode
+\usepackage[]{algorithm}
+\usepackage{algpseudocode}[noend]
 
 %%% END Article customizations
 
 %%% The "real" document content comes below...
 
-\title{Project 1 in FYS3150 }
-\author{The Author}
+\title{Project 1 in FYS3150}
+\author{Simon Halstensen, Carl Fredrik Nordbø Knutsen, Jan Harald Aasen \& Didrik Sten Ingebrigtsen}
 \date{05.09.2021} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
@@ -109,6 +114,35 @@ Which is a discretized version of equation (1) with the following conditions:
 	\item \(v_0=u(0)=0\) 
 	\item \(v_{n}=u(1)=0\).
 \end{itemize}
+
+\section*{Exercise 6}
+
+\subsection*{a)}
+
+In this exercise, we want to formulate the algorithm for solving $Ax = g$ for a general tridiagonal $A$. This is done in [alg \ref{alg:general}].
+
+\begin{algorithm}
+\caption{Algorithm for solving $Ax = g$ for a general tridiagonal matrix $A$. $a$, $b$ and $c$ represent the sub-, main- and superdiagonal. Solving it means taking in $A$ and $g$, and returning $x$.}
+\begin{algorithmic}[0]
+\Procedure{tridiagonal solver}{a, b, c, g, N}
+    \State $\tilde{b}_0 \gets b_0$
+    \State $\tilde{g}_0 \gets g_0$
+    \For{$i \in (1, N)_{\mathbb{N}}$}
+        \State $\tilde{b}_i \gets b_i - \frac{a_i}{\tilde{b}_{i-1}} c_{i-1}$
+        \State $\tilde{g}_i \gets g_i - \frac{a_i}{\tilde{b}_{i-1}} \tilde{g}_{i-1}$
+    \EndFor
+    \State $x_N \gets \frac{\tilde{g}_N}{\tilde{b}_N}$
+    \For{$i \in (N-1, 0)_{\mathbb{N}}$}
+        \State $x_i \gets \frac{\tilde{g}_i - c_i x_{i+1}}{\tilde{b}_i}$
+    \EndFor
+    \State \Return $x$
+\EndProcedure
+\end{algorithmic}
+\label{alg:general}
+\end{algorithm}
+
+\subsection*{b)}
+The number of floating point operations (FLOPS) in the general algorithm in [alg \ref{alg:general}] is $2 \cdot 3 N = 6N$, where $N$ is the size of the matrix, for forward substitution. For back substitution, we have $3 N$ FLOPS. In total, the algorithm has $9N = \mathcal{O}(N)$ FLOPS. 
 
 
 \end{document}
