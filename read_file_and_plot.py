@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def read_function_vals(filename):
-    data =np.loadtxt(filename, dtype="float", delimiter=",")
+    data = np.loadtxt(filename, dtype="float", delimiter=",")
     x_array, u_array = data[:, 0], data[:, 1]
     return x_array, u_array
 
