@@ -22,7 +22,6 @@ void evaluateToFile(double **x, double **u){
 
 
 int main() {
-    cout << "Hello, World 2!" << endl;
     double *x, *u;
     evaluateToFile(&x, &u);
 
