@@ -119,10 +119,21 @@ It immediately follows that
 -\dfrac{d^{2}u}{dx^{2}}=100e^{-10x}
 \]
 This shows that (2) is a solution to equation (1).
+This solution also satisfies the boundary conditions specified, as:
+\[u(0) = 1 - (1- e^{-10})0 -e^{-10\cdot 0} = 1-1 = 0\]
+and
+\[u(1) = 1 - (1- e^{-10})1 -e^{-10\cdot 1} = 0\]
 
 \section*{Exercise 2}
 
-To be added
+The program main.cpp evaluates the exact function \(u(x)\) from exercise 1, at points between 0 and 1. 
+It writes the \(x\)-values and \(u(x)\)-values to a .csv-file, named exact\_evaluated.csv.
+The python script read\_file\_and\_plot.py reads the values from the .csv-file, and plots the function (see figure 1).
+\begin{figure}[htbp]
+\centerline{\includegraphics{exact_function_u(x).pdf}}
+\caption{Plot of the exact function \(u(x) = 1 - (1- e^{-10})x -e^{-10x}\)}
+\label{fig}
+\end{figure}
 
 \section*{Exercise 3}
 
@@ -261,8 +272,28 @@ c, g, N} \State $\tilde{b}_{0}\gets b_{0}$ \State $\tilde{g}_{0}\gets g_{0}$
 \EndFor \State \Return $x$ \EndProcedure \end{algorithmic} \label{alg:general} 
 \end{algorithm}
 
-
 \subsection*{b)}
+The number of floating point operations (FLOPs) in the general algorithm in [alg \ref{alg:general}] is $2 \cdot 3 N = 6N$, where $N$ is the size of the matrix, for forward substitution. For back substitution, we have $3 N$ FLOPs. In total, the algorithm has $9N = \mathcal{O}(N)$ FLOPs. 
+
+\section*{Exercise 7}
+
+To be added
+
+\section*{Exercise 8}
+
+To be added
+
+\section*{Exercise 9}
+
+To be added
+
+\section*{Exercise 10}
+
+To be added
+
+\section*{Exercise 11}
+
+To be added
 
 The number of floating point operations (FLOPS) in the general algorithm
 in {[}alg \ref{alg:general}{]} is $2\cdot3N=6N$, where $N$ is the
