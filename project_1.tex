@@ -76,6 +76,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}[noend]
 
+\usepackage{subfig}
+
 %%% END Article customizations
 
 %%% The "real" document content comes below...
@@ -256,7 +258,7 @@ We now have a known $A$ and $\bar{g}$, so we can solve for $\bar{v}$.
 
 \subsection*{a)}
 
-When the matrix equation in exercise 4 is solved, you get approximate solutions for all the inner points \(x_i\) on the interval \((0, 1\). That is, you get solutions for \(v\) for all points except the first point and the last point. Therefore, if A is a \(n \times n\)-matrix, the complete solution \(\vec{v}^*\) must be of length \(m=n+2\), when you include \(v_0\) and \(v_{n+1}\) (note that we use a different notation in this problem, with n being the number of intervals and not the number of points).
+When the matrix equation in exercise 4 is solved, you get approximate solutions for all the inner points \(x_i\) on the interval \((0, 1)\). That is, you get solutions for \(v\) for all points except the first point and the last point. Therefore, if A is a \(n \times n\)-matrix, the complete solution \(\vec{v}^*\) must be of length \(m=n+2\), when you include \(v_0\) and \(v_{n+1}\) (note that we use a different notation in this problem, with n being the number of intervals and not the number of points).
 
 \subsection*{b)}
 
@@ -305,9 +307,9 @@ To be added
 
 To be added
 
-The number of floating point operations (FLOPS) in the general algorithm
+The number of floating point operations (FLOPs) in the general algorithm
 in {[}alg \ref{alg:general}{]} is $2\cdot3N=6N$, where $N$ is the
 size of the matrix, for forward substitution. For back substitution,
-we have $3N$ FLOPS. In total, the algorithm has $9N=\mathcal{O}(N)$
-FLOPS.
+we have $3N$ FLOPs. In total, the algorithm has $9N=\mathcal{O}(N)$
+FLOPs.
 \end{document}
