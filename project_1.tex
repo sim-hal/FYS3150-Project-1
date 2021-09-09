@@ -44,6 +44,7 @@
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 
 %%% PACKAGES
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage{booktabs}% for much better looking tables
 \usepackage{array}% for better arrays (eg matrices) in maths
 \usepackage{paralist}% very flexible & customisable lists (eg. enumerate/itemize, etc.)
@@ -285,7 +286,30 @@ To be added
 
 \section*{Exercise 9}
 
-To be added
+In this exercise, we want to specialize our algorithm from problem 6, to the case where our $A$ matrix is specified by the signature $(-1, 2, -1)$. This means that the matrix is tridiagonal, and with $a = (-1, -1, \ldots, -1)$, $b = (2, 2, \ldots, 2)$ and $c = (-1, -1, \ldots, -1)$.
+
+\subsection*{a)}
+Firstly, we want to describe how our specialized algorithm looks. If we start of with our general algorithm {[}alg \ref{alg:general}{]}, and set $a$, $b$, and $c$ to be our specific vectors, we find that $\tilde{b}$ is
+\begin{align*}
+\tilde{b}_i & = b_i - \frac{a_i}{\tilde{b}_{i-1}} c_{i-1} = 2 - \frac{(-1)}{\tilde{b}_{i-1}} \cdot (-1) \\
+& = 2 - \frac{1}{\tilde{b}_{i-1}} = \begin{cases} \frac{i+3}{i+2} & i > 1 \\ 2 & i = 1 \end{cases}
+\end{align*}
+
+In the expression for $v$, we also retrieve elements from the $c$ vector, which now always gives the value $-1$. Therefore, it can be simplified slightly:
+\begin{align*}
+v_i & = \frac{\tilde{g}_i - c_i v_{i+1}}{\tilde{b}_i} = \frac{\tilde{g}_i + v_{i+1}}{\tilde{b}_i}
+\end{align*}
+
+$\tilde{g}$ can also be rewritten, and $v$ can be worked more on, so that neither retrieve data from $\tilde{b}$, making the vector obsolete. This will store and retrieve less data, but require more FLOPs, so we choose not to.
+
+\subsection*{b)}
+This new algorithm, which calculates $\tilde{b}$ in a simpler way, saves $2N$ FLOPs through simpler calculation of $\tilde{b}$, and $N$ for $v$, meaning the full algorithm goes from $9N$ to $6N$ FLOPs. This is still $\mathcal{O}(N)$, so the improvement is likely noticeable, but not very important.
+
+% Likewise, by inserting our new $\tilde{b}$, $\tilde{g}$ becomes
+
+% \begin{align*}
+% \tilde{g}_i & = g_i + \frac{\tilde{g}_{i-1}}{\tilde{b}_{i-1}} = \begin{cases} g_i + \frac{i+1}{i+2} \tilde{g}_{i-1} & i > 2 \\ g_i + \frac{\tilde{g}_{i-1}}{2} & i = 2 \\ g_i & i = 1 \end{cases} \\
+% \end{align*}
 
 \section*{Exercise 10}
 
