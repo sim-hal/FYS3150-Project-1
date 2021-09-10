@@ -12,15 +12,16 @@ void general_tridiagonal(double **v, double *a, double *b, double *c, double *g,
     g_tilde[0] = g[0];
 
     for (int i = 1; i < N; i++) {
-        b_tilde[i] = b[i] - (a[i] * c[i - 1]) / b_tilde[i - 1];
-        g_tilde[i] = g[i] - (a[i] * g_tilde[i - 1]) / b_tilde[i - 1];
+        double w = a[i] / b_tilde[i - 1];
+        b_tilde[i] = b[i] - w * c[i - 1];
+        g_tilde[i] = g[i] - w * g_tilde[i - 1];
     }
 
-    (*v)[N] = g_tilde[N - 1] / b_tilde[N - 1];
+    (*v)[N - 1] = g_tilde[N - 1] / b_tilde[N - 1];
     
     std::cout << (*v)[N] << std::endl;
 
-    for (int i = N - 1; i >= 0; i--) {
+    for (int i = N - 2; i >= 0; i--) {
         (*v)[i] = (g_tilde[i] - c[i] * (*v)[i + 1]) / b_tilde[i];
         std::cout << (*v)[i] << std::endl;
     }
