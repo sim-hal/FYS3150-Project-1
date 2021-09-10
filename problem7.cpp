@@ -31,10 +31,9 @@ int main() {
 
     double *v, *g;
     int N = 10000;
-
-    double *a = new double[N-1];
+    double *a = new double[N - 1];
     double *b = new double[N];
-    double *c = new double[N-1];
+    double *c = new double[N - 1];
 
     g = new double[N];
     double *x = new double[N];
@@ -48,7 +47,7 @@ int main() {
         }
         b[i] = 2.;
         x[i] = increment * i;
-        g[i] = 100 * exp(-10 * x[i]);
+        g[i] = increment * increment * 100 * exp(-10 * x[i]);
     }
 
     general_tridiagonal(&v, a, b, c, g, N);
