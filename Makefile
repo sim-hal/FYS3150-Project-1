@@ -5,6 +5,7 @@ problem2: main
 	mkdir -p computed
 	mkdir -p plots
 	./main exact
+	python3 src/read_file_and_plot.py
 
 problem7: main problem2
 	mkdir -p computed
@@ -21,7 +22,14 @@ main: main.cpp $(headers) $(sources)
 
 all: problem2 problem7
 
+latex: all
+	pdflatex latex/project_1.tex -output-dir=latex
+	rm -f project_1.log
+	rm -f project_1.aux
+	rm -f texput.log
+
 clear:
-	rm main
-	rm -rf computed
-	rm -rf plots
+	rm -f main
+	rm -f -rf computed
+	rm -f -rf plots
+	rm -f project_1.pdf
