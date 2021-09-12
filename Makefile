@@ -24,3 +24,4 @@ all: problem2 problem7
 clear:
 	rm main
 	rm -rf computed
+	rm -rf plots
