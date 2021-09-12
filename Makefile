@@ -5,7 +5,7 @@ problem2: main
 	mkdir -p computed
 	mkdir -p plots
 	./main exact
-	python3 src/read_file_and_plot.py exact_evaluated
+	python3 src/read_file_and_plot.py exact
 
 problem7: main problem2
 	mkdir -p computed
@@ -16,7 +16,7 @@ problem7: main problem2
 	./main 10000
 	./main 100000
 	python3 src/error_plotting.py 10 100 1000 10000 100000
-	python3 src/read_file_and_plot.py exact_evaluated 10 100 100000
+	python3 src/read_file_and_plot.py exact 10 100 100000
 
 main: main.cpp $(headers) $(sources)
 	g++ main.cpp src/exact_solution.cpp src/tools.cpp src/matrix_solver.cpp -I include -o main

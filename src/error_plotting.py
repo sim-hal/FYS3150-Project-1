@@ -52,7 +52,7 @@ def plot_all_errors(n_list: List[int] = [10, 100, 1000, 10000],
 
     fig.suptitle(title)
 
-    x, u = read_function_vals(f"computed/exact_evaluated.csv")
+    x, u = read_function_vals(f"computed/exact.csv")
 
     for n, abs_ax, rel_ax in zip(n_list, axs[0], axs[1]):
         _, v = read_function_vals(f"computed/{n}.csv")
@@ -61,8 +61,8 @@ def plot_all_errors(n_list: List[int] = [10, 100, 1000, 10000],
         abs_err = compute_absolute_error(u[::step_size], v)
         rel_err = compute_relative_error(u[::step_size], v)
 
-        max_abs_errors[n] = np.max(abs_err)
-        max_rel_errors[n] = np.max(rel_err)
+        max_abs_errors[n] = np.exp(np.max(abs_err))
+        max_rel_errors[n] = np.exp(np.max(rel_err))
 
         abs_ax.set_title(f"n = {n}")
         abs_ax.plot(x[::step_size], abs_err)

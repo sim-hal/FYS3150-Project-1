@@ -10,12 +10,12 @@ def read_function_vals(filename):
 def main(files_to_plot: List[str]):
     for file in files_to_plot:
         x, u = read_function_vals(f"computed/{file}.csv")
-        label = "Exact" if file == "exact_evaluated" else f"n={file}"
+        label = "Exact" if file == "exact" else f"n={file}"
         plt.plot(x, u, label=label)
     plt.ylabel("u(x)")
     plt.xlabel("x")
     plt.legend()
-    plt.savefig(f"plots/{'_'.join(files_to_plot)}.pdf")
+    plt.savefig(f"plots/{'-'.join(files_to_plot)}.pdf")
     plt.cla()
 
 if __name__ == "__main__":
