@@ -1,18 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import List
 
 def read_function_vals(filename):
     data = np.loadtxt(filename, dtype="float", delimiter=",")
     x_array, u_array = data[:, 0], data[:, 1]
     return x_array, u_array
 
-def plot_function_values(x, u, filename="plots/exact_function_u(x).pdf"):
-    plt.plot(x, u, label="u")
-    plt.xlabel("x")
+def main(files_to_plot: List[str]):
+    for file in files_to_plot:
+        x, u = read_function_vals(f"computed/{file}.csv")
+        label = "Exact" if file == "exact_evaluated" else f"n={file}"
+        plt.plot(x, u, label=label)
     plt.ylabel("u(x)")
-    plt.title("Plot of exact function u(x)")
-    plt.savefig(filename)
+    plt.xlabel("x")
+    plt.legend()
+    plt.savefig(f"plots/{'_'.join(files_to_plot)}.pdf")
+    plt.cla()
 
 if __name__ == "__main__":
-    x_array, u_array = read_function_vals("computed/exact_evaluated.csv")
-    plot_function_values(x_array, u_array)
+    import sys
+
+    main(sys.argv[1:])
