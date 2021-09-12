@@ -15,8 +15,8 @@ def plot_function_values(x, u, filename="exact_function_u(x).pdf"):
 
     
 if __name__ == "__main__":
-    x_array, u_array = read_function_vals("exact_evaluated.csv")
+    x_array, u_array = read_function_vals("computed/exact_evaluated.csv")
     plot_function_values(x_array, u_array)
 
-    x, v = read_function_vals("general_approximation_10000.txt")
-    plot_function_values(x, v, filename="approx_plot_10000.pdf")
+    x, v = read_function_vals("computed/general_approximation_10000.txt")
+    plot_function_values(x, v, filename="plots/approx_plot_10000.pdf")

@@ -3,10 +3,12 @@ sources := $(wildcard src/*.hpp)
 
 problem2: main
 	mkdir -p computed
+	mkdir -p plots
 	./main exact
 
 problem7: main problem2
 	mkdir -p computed
+	mkdir -p plots
 	./main 10
 	./main 100
 	./main 1000
