@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
         double *x, *u;
         compute_exact_solution(&x, &u, N);
 
-        std::string filename = "computed/exact_evaluated.csv";
+        std::string filename = "computed/exact.csv";
         write_to_file(x, u, filename, N);
 
         delete [] x;
@@ -48,8 +48,6 @@ int main(int argc, char *argv[]) {
         }
 
         special_tridiagonal(&v, g, N);
-        //special_tridiagonal(&v, a, b, c, g, N);
-        //general_tridiagonal(&v, a, b, c, g, N);
 
         write_to_file(x, v, "computed/" + std::to_string(N) + ".csv", N);
 
