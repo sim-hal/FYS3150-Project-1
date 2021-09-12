@@ -32,4 +32,3 @@ clear:
 	rm -f main
 	rm -f -rf computed
 	rm -f -rf plots
-	rm -f project_1.pdf
