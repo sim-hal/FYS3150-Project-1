@@ -6,17 +6,13 @@ def read_function_vals(filename):
     x_array, u_array = data[:, 0], data[:, 1]
     return x_array, u_array
 
-def plot_function_values(x, u, filename="exact_function_u(x).pdf"):
+def plot_function_values(x, u, filename="plots/exact_function_u(x).pdf"):
     plt.plot(x, u, label="u")
     plt.xlabel("x")
     plt.ylabel("u(x)")
     plt.title("Plot of exact function u(x)")
     plt.savefig(filename)
 
-    
 if __name__ == "__main__":
     x_array, u_array = read_function_vals("computed/exact_evaluated.csv")
     plot_function_values(x_array, u_array)
-
-    x, v = read_function_vals("computed/general_approximation_10000.txt")
-    plot_function_values(x, v, filename="plots/approx_plot_10000.pdf")
