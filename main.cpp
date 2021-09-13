@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    if (strncmp(argv[1], "time", 5) == 0) {
+    if (strncmp(argv[1], "time", 4) == 0) {
         std::ofstream outputFile("computed/time.csv");
         outputFile << "N,t_general,t_special" << std::endl;
 
@@ -62,6 +62,7 @@ int main(int argc, char *argv[]) {
                 }
 
                 auto t1 = std::chrono::high_resolution_clock::now();
+                
                 if (j < ITERS) {
                     general_tridiagonal(&v, a, b, c, g, N);
                 }
