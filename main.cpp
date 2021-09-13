@@ -33,7 +33,6 @@ int main(int argc, char *argv[]) {
     if (strncmp(argv[1], "time", 4) == 0) {
         std::ofstream outputFile("computed/time.csv");
         outputFile << "N,t_general,t_special" << std::endl;
-        outputFile << std::scientific;
 
         for (int i = 2; i < 7; i++){
             
@@ -120,12 +119,11 @@ int main(int argc, char *argv[]) {
             g[i] = increment * increment * 100 * exp(-10 * x[i]);
         }
 
-
         special_tridiagonal(&v, g, N);
 
         write_to_file(x, v, "computed/" + std::to_string(N) + ".csv", N);
 
-        // free memory
+        // free
 
         delete [] v;
         delete [] g;
