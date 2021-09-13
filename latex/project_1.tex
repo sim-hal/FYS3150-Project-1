@@ -8,10 +8,15 @@
 \pagestyle{fancy}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[unicode=true]
+ {hyperref}
 
 \makeatletter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
 \floatstyle{ruled}
 \newfloat{algorithm}{tbp}{loa}
 \providecommand{\algorithmname}{Algorithm}
@@ -39,12 +44,12 @@
 % \geometry{landscape} % set up the page for landscape
 %   read geometry.pdf for detailed page layout information
 
-\usepackage{graphicx}% support the \includegraphics command and options
+% support the \includegraphics command and options
 
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 
 %%% PACKAGES
-\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% make it possible to include more than one captioned figure/table in a single float
 \usepackage{booktabs}% for much better looking tables
 \usepackage{array}% for better arrays (eg matrices) in maths
 \usepackage{paralist}% very flexible & customisable lists (eg. enumerate/itemize, etc.)
@@ -77,7 +82,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}[noend]
 
-\usepackage{subfig}
+
 
 %%% END Article customizations
 
@@ -88,10 +93,18 @@
 \date{05.09.2021} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
+
+
+
+
 \makeatother
 
 \begin{document}
-\maketitle In this project we are solving the following equation:
+\maketitle Project 1 
+
+\href{Github\%20link:\%20https://github.com/sim-hal/FYS3150-Project-1}{Github link: https://github.com/sim-hal/FYS3150-Project-1}
+
+In this project we are solving the following equation: 
 \begin{equation}
 -\dfrac{d^{2}u}{dx^{2}}=f(x)
 \end{equation}
@@ -121,22 +134,30 @@ It immediately follows that
 \[
 -\dfrac{d^{2}u}{dx^{2}}=100e^{-10x}
 \]
-This shows that (2) is a solution to equation (1).
-This solution also satisfies the boundary conditions specified, as:
-\[u(0) = 1 - (1- e^{-10})0 -e^{-10\cdot 0} = 1-1 = 0\]
-and
-\[u(1) = 1 - (1- e^{-10})1 -e^{-10\cdot 1} = 0\]
+This shows that (2) is a solution to equation (1). This solution also
+satisfies the boundary conditions specified, as: 
+\[
+u(0)=1-(1-e^{-10})0-e^{-10\cdot0}=1-1=0
+\]
+and 
+\[
+u(1)=1-(1-e^{-10})1-e^{-10\cdot1}=0
+\]
+
 
 \section*{Exercise 2}
 
-The program main.cpp evaluates the exact function \(u(x)\) from exercise 1, at points between 0 and 1. 
-It writes the \(x\)-values and \(u(x)\)-values to a .csv-file, named exact\_evaluated.csv.
-The python script read\_file\_and\_plot.py reads the values from the .csv-file, and plots the function (see figure 1).
+The program main.cpp evaluates the exact function $u(x)$ from exercise
+1, at points between 0 and 1. It writes the $x$-values and $u(x)$-values
+to a .csv-file, named exact\_evaluated.csv. The python script read\_file\_and\_plot.py
+reads the values from the .csv-file, and plots the function (see figure
+1). 
 \begin{figure}[htbp]
-\centerline{\includegraphics{plots/exact.pdf}}
-\caption{Plot of the exact function \(u(x) = 1 - (1- e^{-10})x -e^{-10x}\)}
-\label{fig}
+\centerline{\includegraphics[bb = 0 0 200 100, draft, type=eps]{plots/exact.pdf}}
+\caption{Plot of the exact function $u(x)=1-(1-e^{-10})x-e^{-10x}$}
+\label{fig} 
 \end{figure}
+
 
 \section*{Exercise 3}
 
@@ -193,7 +214,7 @@ We have eq. (3) from exercise 3, with $i=1,2,\dots,n$.
  &  & \dots & \dots & \dots & \dots & \dots\\
  &  &  &  & -v_{i-3} & 2v_{n-2} & -v_{n-1}\\
  &  &  &  &  & -v_{n-2} & 2v_{n-1} & -v_{n}
-\end{array}=h{{}^2}\begin{array}{c}
+\end{array}=h{^{2}}\begin{array}{c}
 f_{1}\\
 f_{2}\\
 f_{3}\\
@@ -212,7 +233,7 @@ we know $v_{0}$and $v_{n}$
  & \dots & \dots & \dots & \dots & \dots\\
  &  &  & -v_{n-3} & 2v_{n-2} & -v_{n-1}\\
  &  &  &  & -v_{n-2} & 2v_{n-1}
-\end{array}=h{{}^2}\begin{array}{c}
+\end{array}=h{^{2}}\begin{array}{c}
 f_{1}+v_{0}\\
 f_{2}\\
 f_{3}\\
@@ -228,7 +249,7 @@ g_{n-2}\\
 g_{n-1}
 \end{array}
 \]
-We can then seperate out $\vec{v}$
+We can then seperate out $\vec{v}$ 
 \[
 \left[\begin{array}{cccccc}
 2 & -1\\
@@ -259,11 +280,21 @@ We now have a known $A$ and $\bar{g}$, so we can solve for $\bar{v}$.
 
 \subsection*{a)}
 
-When the matrix equation in exercise 4 is solved, you get approximate solutions for all the inner points \(x_i\) on the interval \((0, 1)\). That is, you get solutions for \(v\) for all points except the first point and the last point. Therefore, if A is a \(n \times n\)-matrix, the complete solution \(\vec{v}^*\) must be of length \(m=n+2\), when you include \(v_0\) and \(v_{n+1}\) (note that we use a different notation in this problem, with n being the number of intervals and not the number of points).
+When the matrix equation in exercise 4 is solved, you get approximate
+solutions for all the inner points $x_{i}$ on the interval $(0,1)$.
+That is, you get solutions for $v$ for all points except the first
+point and the last point. Therefore, if A is a $n\times n$-matrix,
+the complete solution $\vec{v}^{*}$ must be of length $m=n+2$, when
+you include $v_{0}$ and $v_{n+1}$ (note that we use a different
+notation in this problem, with n being the number of intervals and
+not the number of points).
 
 \subsection*{b)}
 
-The \(n\) equations give solutions \(v_i\) for all the inner points \(x_i\), as explained in exercise a). We do not solve for \(v_{n+1}\) or \(v_0\), as these values are already known (and necessary to compute values of \(v_i\) for \(i \in \{ 1, 2, ..., n\}\) with this method).
+The $n$ equations give solutions $v_{i}$ for all the inner points
+$x_{i}$, as explained in exercise a). We do not solve for $v_{n+1}$
+or $v_{0}$, as these values are already known (and necessary to compute
+values of $v_{i}$ for $i\in\{1,2,...,n\}$ with this method).
 
 \section*{Exercise 6}
 
@@ -285,66 +316,104 @@ c, g, N} \State $\tilde{b}_{0}\gets b_{0}$ \State $\tilde{g}_{0}\gets g_{0}$
 \EndFor \State \Return $x$ \EndProcedure \end{algorithmic} \label{alg:general} 
 \end{algorithm}
 
+
 \subsection*{b)}
-The number of floating point operations (FLOPs) in the general algorithm in [alg \ref{alg:general}] is $2 \cdot 3 N = 6N$, where $N$ is the size of the matrix, for forward substitution. For back substitution, we have $3 N$ FLOPs. In total, the algorithm has $9N = \mathcal{O}(N)$ FLOPs. 
+
+The number of floating point operations (FLOPs) in the general algorithm
+in {[}alg \ref{alg:general}{]} is $2\cdot3N=6N$, where $N$ is the
+size of the matrix, for forward substitution. For back substitution,
+we have $3N$ FLOPs. In total, the algorithm has $9N=\mathcal{O}(N)$
+FLOPs.
 
 \section*{Exercise 7}
 
 \subsection*{b)}
-The plot that can be seen in [fig:\ref{fig:approx}] shows how higher values of $n$ lead to better approximations.
+
+The plot that can be seen in {[}fig:\ref{fig:approx}{]} shows how
+higher values of $n$ lead to better approximations.
 
 \begin{figure}
-\centerline{\includegraphics{plots/exact-10-100-100000.pdf}}
-\caption{Plot of the exact function \(u(x) = 1 - (1- e^{-10})x -e^{-10x}\) against numerical approximations with different amount of steps ($n$)}
-\label{fig:approx}
+\centerline{\includegraphics[bb = 0 0 200 100, draft, type=eps]{plots/exact-10-100-100000.pdf}}
+\caption{Plot of the exact function $u(x)=1-(1-e^{-10})x-e^{-10x}$ against
+numerical approximations with different amount of steps ($n$)}
+\label{fig:approx} 
 \end{figure}
+
 
 \section*{Exercise 8}
 
 \subsection*{a) and b)}
-The plot of error for different numerical approximations to the equation can be seen in [fig:\ref{fig:error}]. 
+
+The plot of error for different numerical approximations to the equation
+can be seen in {[}fig:\ref{fig:error}{]}. 
 \begin{figure}
-\label{fig:error}
-\includegraphics[width=\textwidth]{plots/errors.pdf}
+\label{fig:error} \includegraphics[width=1\textwidth,bb = 0 0 200 100, draft, type=eps]{plots/errors.pdf}
 \caption{Plot of absolute and relative log errors for different values of $n$.}
 \end{figure}
 
+
 \subsection*{c)}
-The maximum error for numerical approximations with different $n$ values, can be seen in [tab:\ref{tab:maxerr}]. Here, it is obvious that higher $n$-values lead to lower errors, and that multiplying $n$ by $10$ is roughly equivalent to removing $2/3$ of the maximum absolute error. The maximum relative error however, is reduced by a lot less, indicating that there is still some significant error when the actual value is very low.
+
+The maximum error for numerical approximations with different $n$
+values, can be seen in {[}tab:\ref{tab:maxerr}{]}. Here, it is obvious
+that higher $n$-values lead to lower errors, and that multiplying
+$n$ by $10$ is roughly equivalent to removing $2/3$ of the maximum
+absolute error. The maximum relative error however, is reduced by
+a lot less, indicating that there is still some significant error
+when the actual value is very low.
 
 \begin{table}
-\begin{center}
-\begin{tabular}{ c c c c c c }
-n: & 10 & 100 & 1000 & 10000 & 100000 \\
-\hline
-& 1.296 & 0.4745 & 0.1747 & 0.06427 & 0.02364 \\
-& 1.705 & 1.383 & 1.354 & 1.352 & 1.351 \\
-\end{tabular}
-\caption{Maximum absolute and relative error in a time step, for each $n$.}
-\label{tab:maxerr}
-\end{center}
+\centering{}%
+\begin{tabular}{cccccc}
+n:  & 10  & 100  & 1000  & 10000  & 100000 \tabularnewline
+\hline 
+ & 1.296  & 0.4745  & 0.1747  & 0.06427  & 0.02364 \tabularnewline
+ & 1.705  & 1.383  & 1.354  & 1.352  & 1.351 \tabularnewline
+\end{tabular}\caption{Maximum absolute and relative error in a time step, for each $n$.}
+\label{tab:maxerr} 
 \end{table}
+
 
 \section*{Exercise 9}
 
-In this exercise, we want to specialize our algorithm from problem 6, to the case where our $A$ matrix is specified by the signature $(-1, 2, -1)$. This means that the matrix is tridiagonal, and with $a = (-1, -1, \ldots, -1)$, $b = (2, 2, \ldots, 2)$ and $c = (-1, -1, \ldots, -1)$.
+In this exercise, we want to specialize our algorithm from problem
+6, to the case where our $A$ matrix is specified by the signature
+$(-1,2,-1)$. This means that the matrix is tridiagonal, and with
+$a=(-1,-1,\ldots,-1)$, $b=(2,2,\ldots,2)$ and $c=(-1,-1,\ldots,-1)$.
 
 \subsection*{a)}
-Firstly, we want to describe how our specialized algorithm looks. If we start of with our general algorithm {[}alg \ref{alg:general}{]}, and set $a$, $b$, and $c$ to be our specific vectors, we find that $\tilde{b}$ is
+
+Firstly, we want to describe how our specialized algorithm looks.
+If we start of with our general algorithm {[}alg \ref{alg:general}{]},
+and set $a$, $b$, and $c$ to be our specific vectors, we find that
+$\tilde{b}$ is 
 \begin{align*}
-\tilde{b}_i & = b_i - \frac{a_i}{\tilde{b}_{i-1}} c_{i-1} = 2 - \frac{(-1)}{\tilde{b}_{i-1}} \cdot (-1) \\
-& = 2 - \frac{1}{\tilde{b}_{i-1}} = \begin{cases} \frac{i+3}{i+2} & i > 1 \\ 2 & i = 1 \end{cases}
+\tilde{b}_{i} & =b_{i}-\frac{a_{i}}{\tilde{b}_{i-1}}c_{i-1}=2-\frac{(-1)}{\tilde{b}_{i-1}}\cdot(-1)\\
+ & =2-\frac{1}{\tilde{b}_{i-1}}=\begin{cases}
+\frac{i+3}{i+2} & i>1\\
+2 & i=1
+\end{cases}
 \end{align*}
 
-In the expression for $v$, we also retrieve elements from the $c$ vector, which now always gives the value $-1$. Therefore, it can be simplified slightly:
+In the expression for $v$, we also retrieve elements from the $c$
+vector, which now always gives the value $-1$. Therefore, it can
+be simplified slightly: 
 \begin{align*}
-v_i & = \frac{\tilde{g}_i - c_i v_{i+1}}{\tilde{b}_i} = \frac{\tilde{g}_i + v_{i+1}}{\tilde{b}_i}
+v_{i} & =\frac{\tilde{g}_{i}-c_{i}v_{i+1}}{\tilde{b}_{i}}=\frac{\tilde{g}_{i}+v_{i+1}}{\tilde{b}_{i}}
 \end{align*}
 
-$\tilde{g}$ can also be rewritten, and $v$ can be worked more on, so that neither retrieve data from $\tilde{b}$, making the vector obsolete. This will store and retrieve less data, but require more FLOPs, so we choose not to.
+$\tilde{g}$ can also be rewritten, and $v$ can be worked more on,
+so that neither retrieve data from $\tilde{b}$, making the vector
+obsolete. This will store and retrieve less data, but require more
+FLOPs, so we choose not to.
 
 \subsection*{b)}
-This new algorithm, which calculates $\tilde{b}$ in a simpler way, saves $2N$ FLOPs through simpler calculation of $\tilde{b}$, and $N$ for $v$, meaning the full algorithm goes from $9N$ to $6N$ FLOPs. This is still $\mathcal{O}(N)$, so the improvement is likely noticeable, but not very important.
+
+This new algorithm, which calculates $\tilde{b}$ in a simpler way,
+saves $2N$ FLOPs through simpler calculation of $\tilde{b}$, and
+$N$ for $v$, meaning the full algorithm goes from $9N$ to $6N$
+FLOPs. This is still $\mathcal{O}(N)$, so the improvement is likely
+noticeable, but not very important.
 
 % Likewise, by inserting our new $\tilde{b}$, $\tilde{g}$ becomes
 
@@ -354,15 +423,36 @@ This new algorithm, which calculates $\tilde{b}$ in a simpler way, saves $2N$ FL
 
 \section*{Exercise 10}
 
-To be added
+We see that execution time increases linearly as expected, and the
+execution time for the special is lower than the generel. 
+
+\begin{tabular}{|c|c|c|}
+\hline 
+N  & time generel (s) & time special (s)\tabularnewline
+\hline 
+\hline 
+100 & 3.418E-06  & 3.278E-06 \tabularnewline
+\hline 
+1000 & 2.855E-05  & 1.8821E-05 \tabularnewline
+\hline 
+10000 & 0.000256742  & 0.000181819 \tabularnewline
+\hline 
+100000 & 0.00255639  & 0.00192241 \tabularnewline
+\hline 
+1000000 & 0.0258861  & 0.0238919 \tabularnewline
+\hline 
+\end{tabular}
+
+Table of execution times 
 
 \section*{Exercise 11}
 
-To be added
+LU decomposition has the same complexity as matrix multiplication
+(). The Lu therefor recuier more FLOPs than the. 
 
 The number of floating point operations (FLOPs) in the general algorithm
 in {[}alg \ref{alg:general}{]} is $2\cdot3N=6N$, where $N$ is the
 size of the matrix, for forward substitution. For back substitution,
 we have $3N$ FLOPs. In total, the algorithm has $9N=\mathcal{O}(N)$
-FLOPs.
+FLOPs. 
 \end{document}
