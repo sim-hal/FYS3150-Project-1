@@ -365,10 +365,10 @@ when the actual value is very low.
 \begin{table}
 \centering{}%
 \begin{tabular}{cccccc}
-n:  & 10  & 100  & 1000  & 10000  & 100000 \tabularnewline
+\textbf{n}:  & 10  & 100  & 1000  & 10000  & 100000 \tabularnewline
 \hline 
- & 1.296  & 0.4745  & 0.1747  & 0.06427  & 0.02364 \tabularnewline
- & 1.705  & 1.383  & 1.354  & 1.352  & 1.351 \tabularnewline
+\textbf{Max error} & 1.296  & 0.4745  & 0.1747  & 0.06427  & 0.02364 \tabularnewline
+\textbf{Relative error} & 1.705  & 1.383  & 1.354  & 1.352  & 1.351 \tabularnewline
 \end{tabular}\caption{Maximum absolute and relative error in a time step, for each $n$.}
 \label{tab:maxerr} 
 \end{table}
@@ -424,7 +424,7 @@ noticeable, but not very important.
 \section*{Exercise 10}
 
 We see that execution time increases linearly as expected, and the
-execution time for the special is lower than the generel. 
+execution time for the special algorithm is lower than the generel. 
 
 \begin{tabular}{|c|c|c|}
 \hline 
@@ -447,12 +447,13 @@ Table of execution times
 
 \section*{Exercise 11}
 
-LU decomposition has the same complexity as matrix multiplication
-(). The Lu therefor recuier more FLOPs than the. 
-
 The number of floating point operations (FLOPs) in the general algorithm
-in {[}alg \ref{alg:general}{]} is $2\cdot3N=6N$, where $N$ is the
+in {[}alg \ref{alg:general}{]} is $5N$, where $N$ is the
 size of the matrix, for forward substitution. For back substitution,
-we have $3N$ FLOPs. In total, the algorithm has $9N=\mathcal{O}(N)$
+we have $3N$ FLOPs. In total, the algorithm has $8N=\mathcal{O}(N)$
 FLOPs. 
+\\ \\
+Counting up for the special algorithm, we get a total of $5N=\mathcal{O}(N)$ floating point operations.
+\\ \\
+Regarding general LU-decomposition - since we do not assume anything about the sparsity of the matrix, we can expect this to be slower. 
 \end{document}
