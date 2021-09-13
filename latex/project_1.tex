@@ -82,7 +82,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}[noend]
 
-
+\usepackage{subfig}
 
 %%% END Article customizations
 
@@ -100,7 +100,7 @@
 \makeatother
 
 \begin{document}
-\maketitle Project 1 
+\maketitle 
 
 \href{Github\%20link:\%20https://github.com/sim-hal/FYS3150-Project-1}{Github link: https://github.com/sim-hal/FYS3150-Project-1}
 
@@ -152,8 +152,8 @@ The program main.cpp evaluates the exact function $u(x)$ from exercise
 to a .csv-file, named exact\_evaluated.csv. The python script read\_file\_and\_plot.py
 reads the values from the .csv-file, and plots the function (see figure
 1). 
-\begin{figure}[htbp]
-\centerline{\includegraphics[bb = 0 0 200 100, draft, type=eps]{plots/exact.pdf}}
+\begin{figure}%[htbp]
+\centerline{\includegraphics{plots/exact.pdf}} %[bb = 0 0 200 100, draft, type=eps]
 \caption{Plot of the exact function $u(x)=1-(1-e^{-10})x-e^{-10x}$}
 \label{fig} 
 \end{figure}
@@ -333,7 +333,7 @@ The plot that can be seen in {[}fig:\ref{fig:approx}{]} shows how
 higher values of $n$ lead to better approximations.
 
 \begin{figure}
-\centerline{\includegraphics[bb = 0 0 200 100, draft, type=eps]{plots/exact-10-100-100000.pdf}}
+\centerline{\includegraphics{plots/exact-10-100-100000.pdf}} %[bb = 0 0 200 100, draft, type=eps]
 \caption{Plot of the exact function $u(x)=1-(1-e^{-10})x-e^{-10x}$ against
 numerical approximations with different amount of steps ($n$)}
 \label{fig:approx} 
@@ -347,7 +347,7 @@ numerical approximations with different amount of steps ($n$)}
 The plot of error for different numerical approximations to the equation
 can be seen in {[}fig:\ref{fig:error}{]}. 
 \begin{figure}
-\label{fig:error} \includegraphics[width=1\textwidth,bb = 0 0 200 100, draft, type=eps]{plots/errors.pdf}
+\label{fig:error} \includegraphics[scale=0.7]{plots/errors.pdf} %[width=1\textwidth,bb = 0 0 200 100, draft, type=eps]
 \caption{Plot of absolute and relative log errors for different values of $n$.}
 \end{figure}
 
