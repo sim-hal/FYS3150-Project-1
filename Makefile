@@ -19,7 +19,7 @@ problem7: main problem2
 	python3 src/read_file_and_plot.py exact 10 100 100000
 
 main: main.cpp $(headers) $(sources)
-	g++ main.cpp src/exact_solution.cpp src/tools.cpp src/matrix_solver.cpp -I include -o main
+	g++ main.cpp src/exact_solution.cpp src/tools.cpp src/matrix_solver.cpp -I include -o main.exe
 
 latex: problem2 problem7
 	pdflatex latex/project_1.tex -output-dir=latex

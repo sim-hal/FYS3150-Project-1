@@ -1,5 +1,5 @@
 #include <cmath>
-#include "matrix_solver.hpp"
+#include "../include/matrix_solver.hpp"
 
 void general_tridiagonal(double **v, double *a, double *b, double *c, double *g, int N) {
     *v = new double[N];

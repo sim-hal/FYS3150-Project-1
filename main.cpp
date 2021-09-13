@@ -1,10 +1,11 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include <string.h>
 
-#include "exact_solution.hpp"
-#include "tools.hpp"
-#include "matrix_solver.hpp"
+#include "include/exact_solution.hpp"
+#include "include/tools.hpp"
+#include "include/matrix_solver.hpp"
 
 int main(int argc, char *argv[]) {
     

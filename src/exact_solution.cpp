@@ -1,5 +1,5 @@
 #include <cmath>
-#include "exact_solution.hpp"
+#include "../include/exact_solution.hpp"
 
 void compute_exact_solution(double **x, double **u, const int N){
     const double closeToOne = 1. - exp(-10);
