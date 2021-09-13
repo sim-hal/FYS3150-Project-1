@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         delete [] b;
         delete [] c;
         delete [] x;
-
+        
         return 0;
     }
 }
