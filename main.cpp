@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <string.h>
+#include <chrono>
+#include <fstream>
 
 #include "include/exact_solution.hpp"
 #include "include/tools.hpp"
@@ -25,6 +27,68 @@ int main(int argc, char *argv[]) {
         delete [] u;
 
         return 0;
+    }
+
+    if (strncmp(argv[1], "time", 5) == 0) {
+        std::ofstream outputFile("computed/time.csv");
+        outputFile << "N,t_general,t_special" << std::endl;
+
+        for (int i = 2; i < 7; i++){
+            
+            int N = pow(10, i);
+            double total_time_general = 0;
+            double total_time_special = 0;
+
+            int ITERS = 100;
+
+            for (int j = 0; j < ITERS * 2; j++){
+                double *v;
+                double *g = new double[N];
+                double *a = new double[N - 1];
+                double *b = new double[N];
+                double *c = new double[N - 1];
+                double *x = new double[N];
+
+                const double increment = 1./N;
+
+                for (int i = 0; i < N; i++) {
+                    if (i < N - 1) {
+                        a[i] = -1.;
+                        c[i] = -1.;
+                    }
+                    b[i] = 2.;
+                    x[i] = increment * i;
+                    g[i] = increment * increment * 100 * exp(-10 * x[i]);
+                }
+
+                auto t1 = std::chrono::high_resolution_clock::now();
+                if (j < ITERS) {
+                    general_tridiagonal(&v, a, b, c, g, N);
+                }
+                else {
+                    special_tridiagonal(&v, g, N);
+                }
+                auto t2 = std::chrono::high_resolution_clock::now();
+                double duration_seconds = std::chrono::duration<double>(t2 - t1).count();
+                
+                if (j < ITERS){
+                    total_time_general += duration_seconds;
+                }
+                else {
+                    total_time_special += duration_seconds;
+                }
+
+                delete [] v;
+                delete [] g;
+                delete [] a;
+                delete [] b;
+                delete [] c;
+                delete [] x;
+
+            }
+            outputFile << N << "," << total_time_general / ITERS << "," << total_time_special / ITERS << std::endl;
+        }
+        outputFile.close();
     }
 
     else {
@@ -58,7 +122,7 @@ int main(int argc, char *argv[]) {
         delete [] b;
         delete [] c;
         delete [] x;
-        
+
         return 0;
     }
 }
