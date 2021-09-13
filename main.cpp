@@ -9,10 +9,11 @@
 #include "include/tools.hpp"
 #include "include/matrix_solver.hpp"
 
+
 int main(int argc, char *argv[]) {
     
 
-    if (argc < 2)
+    if (argc < 2) // if not enough arguments are provided
         return -1;
         
     if (strncmp(argv[1], "exact", 5) == 0) {
@@ -32,6 +33,7 @@ int main(int argc, char *argv[]) {
     if (strncmp(argv[1], "time", 4) == 0) {
         std::ofstream outputFile("computed/time.csv");
         outputFile << "N,t_general,t_special" << std::endl;
+        outputFile << std::scientific;
 
         for (int i = 2; i < 7; i++){
             
@@ -39,7 +41,7 @@ int main(int argc, char *argv[]) {
             double total_time_general = 0;
             double total_time_special = 0;
 
-            int ITERS = 100;
+            int ITERS = 100; // number of times to run each algorithm per value of N
 
             for (int j = 0; j < ITERS * 2; j++){
                 double *v;
@@ -69,6 +71,7 @@ int main(int argc, char *argv[]) {
                 else {
                     special_tridiagonal(&v, g, N);
                 }
+
                 auto t2 = std::chrono::high_resolution_clock::now();
                 double duration_seconds = std::chrono::duration<double>(t2 - t1).count();
                 
@@ -79,6 +82,8 @@ int main(int argc, char *argv[]) {
                     total_time_special += duration_seconds;
                 }
 
+                // free memory
+
                 delete [] v;
                 delete [] g;
                 delete [] a;
@@ -87,6 +92,7 @@ int main(int argc, char *argv[]) {
                 delete [] x;
 
             }
+            // write to file
             outputFile << N << "," << total_time_general / ITERS << "," << total_time_special / ITERS << std::endl;
         }
         outputFile.close();
@@ -103,6 +109,7 @@ int main(int argc, char *argv[]) {
 
         const double increment = 1./N;
 
+        // initialize arrays
         for (int i = 0; i < N; i++) {
             if (i < N - 1) {
                 a[i] = -1.;
@@ -113,9 +120,12 @@ int main(int argc, char *argv[]) {
             g[i] = increment * increment * 100 * exp(-10 * x[i]);
         }
 
+
         special_tridiagonal(&v, g, N);
 
         write_to_file(x, v, "computed/" + std::to_string(N) + ".csv", N);
+
+        // free memory
 
         delete [] v;
         delete [] g;

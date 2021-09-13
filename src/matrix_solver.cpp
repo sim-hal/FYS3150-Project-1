@@ -2,6 +2,13 @@
 #include "../include/matrix_solver.hpp"
 
 void general_tridiagonal(double **v, double *a, double *b, double *c, double *g, int N) {
+    /**
+     *  Solving Av = g
+     * 
+     *  Assuming the NxN matrix A is tridiagonal, with b as main diagonal, a as subdiagonal and c as superdiagonal
+     * 
+     *  See https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
+    */
     *v = new double[N];
     double *b_tilde = new double[N];
     double *g_tilde = new double[N];
@@ -21,7 +28,13 @@ void general_tridiagonal(double **v, double *a, double *b, double *c, double *g,
     }
 }
 
+
 void special_tridiagonal(double **v, double *g, int N) {
+    /**
+     * Solving Av = g
+     * 
+     * Assuming the main diagonal of NxN matrix A is all 2s, and the sub- and superdiagonal are all -1s
+    */
     *v = new double[N];
     double *b_tilde_inv = new double[N];
     double *g_tilde = new double[N];
